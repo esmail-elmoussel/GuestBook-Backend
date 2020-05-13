@@ -1,5 +1,6 @@
 const express = require("express");
 const server = express.Router();
+const verifyToken = require("../helpers/verifyToken");
 
 // require models
 const User = require("../models/User.model");
@@ -13,10 +14,10 @@ const addComment = require("./messagesController/addComment");
 const getAllMessages = require("./messagesController/getAllMessages");
 
 // end points
-server.post("/add/:username", addMessage(User, Message));
-server.put("/edit/:_id", editMessage(Message));
-server.delete("/delete/:_id", deleteMessage(Message));
-server.put("/comment/:_id", addComment(User, Message));
-server.get("/list", getAllMessages(Message));
+server.post("/add/:username", verifyToken(), addMessage(User, Message));
+server.put("/edit/:_id", verifyToken(), editMessage(Message));
+server.delete("/delete/:_id", verifyToken(), deleteMessage(Message));
+server.put("/comment/:_id", verifyToken(), addComment(User, Message));
+server.get("/list", verifyToken(), getAllMessages(Message));
 
 module.exports = server;

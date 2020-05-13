@@ -1,4 +1,4 @@
-const login = (User, bcrypt) => (req, res) => {
+const login = (User, bcrypt, jwt, config) => (req, res) => {
   const { username, password } = req.body;
 
   User.findOne({ username })
@@ -7,7 +7,9 @@ const login = (User, bcrypt) => (req, res) => {
         res.status(400).json("Username does not exist!");
       } else {
         if (bcrypt.compareSync(password, user.password)) {
-          res.json(user);
+          // res.json(config.secret);
+          const token = jwt.sign({ id: user._id }, config.secret);
+          res.json({ auth: true, token: token, userData: user });
         } else {
           res.status(400).json("Wrong Password!");
         }

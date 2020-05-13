@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+require("dotenv").config();
+
 // connecting to MongoDB
 var uristring =
   process.env.MONGODB_URI || "mongodb://localhost:27017/guestbook-app";
