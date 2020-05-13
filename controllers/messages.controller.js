@@ -10,13 +10,13 @@ const addMessage = require("./messagesController/addMessage");
 const editMessage = require("./messagesController/editMessage");
 const deleteMessage = require("./messagesController/deleteMessage");
 const addComment = require("./messagesController/addComment");
-const home = require("./messagesController/home");
+const getAllMessages = require("./messagesController/getAllMessages");
 
-//// end points
+// end points
 server.post("/add/:username", addMessage(User, Message));
 server.put("/edit/:_id", editMessage(Message));
 server.delete("/delete/:_id", deleteMessage(Message));
 server.put("/comment/:_id", addComment(User, Message));
-// server.get("/list", home());
+server.get("/list", getAllMessages(Message));
 
 module.exports = server;
