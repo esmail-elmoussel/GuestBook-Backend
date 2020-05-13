@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
-  username: {
+  owner: {
     type: String,
     required: [true, "comment owner is required!"],
   },
