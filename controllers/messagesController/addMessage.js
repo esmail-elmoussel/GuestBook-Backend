@@ -1,15 +1,14 @@
 const addMessage = (User, Message) => (req, res) => {
-  const { username } = req.params;
   const { content } = req.body;
 
-  User.findOne({ username })
-    .then((user) => {
-      if (user) {
-        Message.create({ username, content })
-          .then((newMessage) => res.json(newMessage))
-          .catch((err) => res.status(400).json("Message content is requierd!"));
-      } else {
+  User.findById(req.userId)
+    .then((data) => {
+      if (!data) {
         res.status(400).json("please register first!");
+      } else {
+        Message.create({ username: data.username, content })
+          .then((newMessage) => res.json(newMessage))
+          .catch(() => res.status(400).json("Message content is requierd!"));
       }
     })
     .catch(() =>

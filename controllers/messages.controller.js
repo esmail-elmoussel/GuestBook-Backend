@@ -14,7 +14,7 @@ const addComment = require("./messagesController/addComment");
 const getAllMessages = require("./messagesController/getAllMessages");
 
 // end points
-server.post("/add/:username", verifyToken(), addMessage(User, Message));
+server.post("/add", verifyToken(), addMessage(User, Message));
 server.put("/edit/:_id", verifyToken(), editMessage(Message));
 server.delete("/delete/:_id", verifyToken(), deleteMessage(Message));
 server.put("/comment/:_id", verifyToken(), addComment(User, Message));

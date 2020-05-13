@@ -7,7 +7,6 @@ const login = (User, bcrypt, jwt, config) => (req, res) => {
         res.status(400).json("Username does not exist!");
       } else {
         if (bcrypt.compareSync(password, user.password)) {
-          // res.json(config.secret);
           const token = jwt.sign({ id: user._id }, config.secret);
           res.json({ auth: true, token: token, userData: user });
         } else {
