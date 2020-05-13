@@ -16,7 +16,7 @@ const home = require("./messagesController/home");
 server.post("/add/:username", addMessage(User, Message));
 server.put("/edit/:_id", editMessage(Message));
 server.delete("/delete/:_id", deleteMessage(Message));
-// server.put("/comment/:id", addComment());
+server.put("/comment/:_id", addComment(User, Message));
 // server.get("/list", home());
 
 module.exports = server;
