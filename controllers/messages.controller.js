@@ -16,7 +16,7 @@ const getAllMessages = require("./messagesController/getAllMessages");
 // end points
 server.post("/add", verifyToken(), addMessage(User, Message));
 server.put("/edit/:_id", verifyToken(), editMessage(User, Message));
-server.delete("/delete/:_id", verifyToken(), deleteMessage(Message));
+server.delete("/delete/:_id", verifyToken(), deleteMessage(User, Message));
 server.put("/comment/:_id", verifyToken(), addComment(User, Message));
 server.get("/list", verifyToken(), getAllMessages(Message));
 
