@@ -1,6 +1,10 @@
 const express = require("express");
 const server = express.Router();
 
+// require models
+const User = require("../models/User.model");
+const Message = require("../models/Message.model");
+
 // require controllers
 const addMessage = require("./messagesController/addMessage");
 const editMessage = require("./messagesController/editMessage");
@@ -9,7 +13,7 @@ const addComment = require("./messagesController/addComment");
 const home = require("./messagesController/home");
 
 //// end points
-// server.post("/add/:username", addMessage());
+server.post("/add/:username", addMessage(User, Message));
 // server.put("/edit/:id", editMessage());
 // server.delete("/delete/:id", deleteMessage());
 // server.put("/comment/:id", addComment());

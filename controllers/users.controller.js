@@ -9,7 +9,7 @@ const User = require("../models/User.model");
 const register = require("./usersController/register");
 const login = require("./usersController/login");
 
-//// end points
+// end points
 server.post("/register", register(User, bcrypt));
 server.post("/login", login(User, bcrypt));
 
