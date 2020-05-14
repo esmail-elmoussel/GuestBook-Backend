@@ -5,10 +5,12 @@ const addMessage = (User, Message) => (req, res) => {
     .then((user) => {
       Message.create({ username: user.username, content })
         .then((newMessage) => res.json(newMessage))
-        .catch(() => res.status(400).json("Message content is requierd!"));
+        .catch(() =>
+          res.status(400).json({ msg: "Message content is requierd!" })
+        );
     })
     .catch(() =>
-      res.status(500).json("an error occurred please try again later!")
+      res.status(500).json({ msg: "an error occurred please try again later!" })
     );
 };
 

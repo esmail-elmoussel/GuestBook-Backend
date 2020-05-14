@@ -3,7 +3,7 @@ const getAllMessages = (Message) => (req, res) => {
     .sort({ date: -1 })
     .then((messages) => res.json(messages))
     .catch(() =>
-      res.status(500).json("an error occurred please try again later!")
+      res.status(500).json({ msg: "an error occurred please try again later!" })
     );
 };
 

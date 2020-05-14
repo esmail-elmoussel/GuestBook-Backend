@@ -4,18 +4,18 @@ const login = (User, bcrypt, jwt, config) => (req, res) => {
   User.findOne({ username })
     .then((user) => {
       if (!user) {
-        res.status(400).json("Username does not exist!");
+        res.status(400).json({ msg: "Username does not exist!" });
       } else {
         if (bcrypt.compareSync(password, user.password)) {
           const token = jwt.sign({ id: user._id }, config.secret);
           res.json({ auth: true, token: token, userData: user });
         } else {
-          res.status(400).json("Wrong Password!");
+          res.status(400).json({ msg: "Wrong Password!" });
         }
       }
     })
     .catch(() =>
-      res.status(500).json("an error occurred please try again later!")
+      res.status(500).json({ msg: "an error occurred please try again later!" })
     );
 };
 

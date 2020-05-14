@@ -12,14 +12,14 @@ const addComment = (User, Message) => (req, res) => {
         { new: true }
       ).then((data) => {
         if (!data) {
-          res.status(404).json("message does not exist!");
+          res.status(404).json({ msg: "message does not exist!" });
         } else {
           res.json(data);
         }
       });
     })
     .catch(() =>
-      res.status(500).json("an error occurred please try again later!")
+      res.status(500).json({ msg: "an error occurred please try again later!" })
     );
 };
 

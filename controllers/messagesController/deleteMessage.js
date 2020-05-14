@@ -5,9 +5,9 @@ const deleteMessage = (User, Message) => (req, res) => {
     .then((user) => {
       Message.findById(_id).then((msg) => {
         if (!msg) {
-          res.status(404).json("message doesn't exist!");
+          res.status(404).json({ msg: "message doesn't exist!" });
         } else if (msg.username !== user.username) {
-          res.status(403).json("user can't delete others messages!");
+          res.status(403).json({ msg: "user can't delete others messages!" });
         } else {
           Message.findOneAndDelete({ _id }).then((deletedMessage) => {
             res.json(deletedMessage);
@@ -16,7 +16,7 @@ const deleteMessage = (User, Message) => (req, res) => {
       });
     })
     .catch(() =>
-      res.status(500).json("an error occurred please try again later!")
+      res.status(500).json({ msg: "an error occurred please try again later!" })
     );
 };
 
