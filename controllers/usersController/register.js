@@ -1,7 +1,7 @@
 const register = (User, bcrypt) => (req, res) => {
   const { username, password } = req.body;
 
-  if (!username.length && !password.length) {
+  if (!username.length || !password.length) {
     res.status(400).json("both username & password are required!");
   } else {
     const hash = bcrypt.hashSync(password);
